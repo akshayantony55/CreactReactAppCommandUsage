@@ -1,10 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
+const App = (props) => {
+
+  const [count, setCount] = useState(props.count);
+
+  const increment = () => {
+    setCount(count+1)
+  }
+  const decrement = () => {
+    setCount(count-1)
+  }
+  return (
+      <div>
+        <div>My new content is {count}</div>
+        <button onClick={decrement}>-1</button>
+        <button onClick={() => setCount(props.count) }>Reset</button>
+        <button onClick={increment}>+1</button>
+      </div>
+  )
+}
+App.defaultProps = {
+  count: 0
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <div>My new content</div>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
